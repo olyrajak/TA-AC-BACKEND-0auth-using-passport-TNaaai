@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/style2.css" />
+    <title>Article</title>
+</head>
+<style>
+    .data {
+        background-color: rgb(44, 228, 203);
+        padding: 20px;
+        font-size: 20px;
+        line-height: 1.5em;
+    }
+    
+    h4 {
+        background-color: rgb(240, 198, 229);
+        padding: 5px;
+        font-size: 40px
+    }
+    
+    h1 {
+        background-color: rgb(32, 1, 24);
+        padding: 5px;
+        color: white;
+        font-size: 40px
+    }
+    
+    li {
+        list-style-type: none
+    }
+    
+    h6 {
+        font-size: 35px
+    }
+</style>
+<div class="container">
+
+    <div class="flex">
+        <a href="/articles" class="btn btn-primary"> Article </a>
+        <a href="/articles/new" class="btn btn-secondary">Add new Article</a>
+        <a href="/users/logout" class="btn btn-secondary">Logout</a>
+    </div>
+    <main class="single">
+        <h1>Article Details</h1>
+
+        <h4>
+            Title :
+            <%= result.title %>
+        </h4>
+        <p class="data">
+            Tag :
+            <%= result.tag %>
+                <br> Author:
+                <%= result.author %>
+                    <br> Likes :
+                    <a class="btn btn-outline-primary" href="/articles/<%= result.id %>/decrement">-</a>
+                    <%= result.likes %>
+                        <a class="btn btn-outline-success" href="/articles/<%= result.id %>/increment">+</a>
+                        <br>Description :
+                        <%= result.description %>
+
+
+        </p>
+        <a href="/articles/<%= result._id%>/edit">
+
+            <button class="btn btn-primary">Edit</button>
+        </a>
+        <a href="/articles/<%= result._id%>/delete">
+
+            <button class="btn btn-danger">Delete</button>
+        </a>
+
+
+        </p>
+
+        <div>
+            <form action="/articles/<%= result._id%>/comments" method="POST">
+                <div class="input__box">
+                    <span class="details">Comments</span>
+                    <textarea name="content" cols="10" rows="3">
+        
+                    </textarea>
+                </div>
+                <div class="button">
+                    <input type="submit" value="Add Comments">
+                </div>
+            </form>
+            <p class="data">
+                <ul>
+                    <h6>Comments</h6>
+
+
+
+                    <% result.comments.forEach(singleComment => { %>
+                        <li>
+                            <%= singleComment.content %>
+                                <a href="/comments/<%= singleComment._id%>/edit">
+                                    <button class="btn btn-primary">Edit</button>
+                                </a>
+                                <a href="/comments/<%= singleComment._id%>/delete">
+
+                                    <button class="btn btn-danger">Delete</button>
+                                </a>
+                        </li>
+
+
+                        <br>
+                        <% }) %>
+                </ul>
+
+            </p>
+        </div>
+    </main>
+</div>
+
+</html>

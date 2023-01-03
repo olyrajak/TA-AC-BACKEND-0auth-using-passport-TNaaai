@@ -1,0 +1,21 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00b7ff;
+}
+.button-nav {
+  background-color: #00b7ff;
+  height: 15vh;
+  border-radius: 20px;
+}
+button {
+  background: blue;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  float: right;
+  margin: 10px;
+}
