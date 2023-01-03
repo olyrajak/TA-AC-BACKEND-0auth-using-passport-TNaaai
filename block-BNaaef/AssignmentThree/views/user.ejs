@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Success</title>
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="flex">
+            <a href="/register" class="btn btn-secondary">New Registration</a>
+            <a href="/articles/new" class="btn btn-secondary">Add Article</a>
+            <a href="/articles" class="btn btn-primary"> Article List </a>
+            <a href="/users/logout" class="btn btn-secondary">Logout</a>
+        </div>
+        <h1> Successfully Login</h1>
+        <% if(user){ %>
+            <h2 style="color:white;text-decoration: underline;">User Details</h1>
+                <div class="border">
+                    <h3 style="color:white">
+                        Name:
+                        <%= user.name %>
+                    </h3>
+                    <h3 style="color:white">
+                        Email Id :
+                        <%= user.email %>
+                    </h3>
+                </div>
+                <%} %>
+
+    </div>
+</body>
+
+</html>
