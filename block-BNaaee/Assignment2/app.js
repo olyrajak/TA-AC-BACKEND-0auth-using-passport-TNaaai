@@ -1,3 +1,4 @@
+require("dotenv").config();
 var createError = require("http-errors");
 var express = require("express");
 var path = require("path");
@@ -15,8 +16,6 @@ var app = express();
 
 require("./modules/git-hub-passport");
 require("./modules/google-passport");
-
-require("dotenv").config();
 
 // mongoose.connect("mongodb://localhost/github-oauth", (err) => {
 //   if (err) {
@@ -47,7 +46,7 @@ mongoose.set("strictQuery", false);
 
 app.use(
   session({
-    secret: "8443e1491abfbd90d29ec01feb6e141ce1c1d816",
+    secret: process.env.SESSION_SECRET_KEY,
     resave: false,
     saveUninitialized: false,
     store: MongoStore.create({
