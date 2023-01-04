@@ -49,15 +49,15 @@ const User = require("../models/User");
 passport.use(
   new GoogleStrategy(
     {
-      clientID: "f673a6bf60c38880ccec",
-      clientSecret: "8443e1491abfbd90d29ec01feb6e141ce1c1d816",
+      clientID: process.env.GOOGLE_CLIENT_ID_KEY,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET_KEY,
       callbackURL: "/auth/google/callback",
     },
     async (accessToken, refreshToken, profile, done) => {
       console.log(profile);
       var profileData = {
         name: profile._json.name,
-        username: profile._json.login,
+        username: profile._json.email,
         email: profile._json.email,
         avatar: profile._json.avatar_url,
       };
