@@ -1,3 +1,4 @@
+require("dotenv").config();
 var createError = require("http-errors");
 var express = require("express");
 var path = require("path");
@@ -7,6 +8,9 @@ var mongoose = require("mongoose");
 var flash = require("connect-flash");
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
+var loginRouter = require("./routes/login");
+var registerRouter = require("./routes/register");
+
 var session = require("express-session");
 var passport = require("passport");
 var MongoStore = require("connect-mongo");
@@ -15,8 +19,6 @@ var app = express();
 
 require("./modules/git-hub-passport");
 require("./modules/google-passport");
-
-require("dotenv").config();
 
 // mongoose.connect("mongodb://localhost/github-oauth", (err) => {
 //   if (err) {
@@ -47,7 +49,7 @@ mongoose.set("strictQuery", false);
 
 app.use(
   session({
-    secret: "8443e1491abfbd90d29ec01feb6e141ce1c1d816",
+    secret: process.env.SESSION_SECRET_KEY,
     resave: false,
     saveUninitialized: false,
     store: MongoStore.create({
@@ -60,6 +62,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
+app.use("/register", registerRouter);
+app.use("/login", loginRouter);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));
