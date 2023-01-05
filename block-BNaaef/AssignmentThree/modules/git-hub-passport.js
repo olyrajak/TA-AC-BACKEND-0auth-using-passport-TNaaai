@@ -49,8 +49,8 @@ const User = require("../models/User");
 passport.use(
   new GitHubStrategy(
     {
-      clientID: "f673a6bf60c38880ccec",
-      clientSecret: "8443e1491abfbd90d29ec01feb6e141ce1c1d816",
+      clientID: process.env.GITHUB_CLIENT_ID_KEY,
+      clientSecret: process.env.GITHUB_CLIENT_SECRET_KEY,
       callbackURL: "/auth/github/callback",
     },
     async (accessToken, refreshToken, profile, done) => {
